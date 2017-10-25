@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import numpy as np
 
 image = mpimg.imread('/home/yuchen/Pictures/exit-ramp')
 plt.imshow(image)
@@ -16,10 +17,16 @@ plt.imshow(gray,cmap='gray')
 
 #larger kernel_size--smoothing over a larger area
 
-
+#define a kernel size, must be odd
 kernel_size =3
 blur_gray = cv2.GaussianBlur(gray,(kernel_size,kernel_size),0)
+
+#define parameters
 low_threshold =100
 high_threshold =200
 edges = cv2.Canny(blur_gray, low_threshold, high_threshold)
 plt.imshow(edges,cmap='Greys_r')
+
+
+lines = cv2.HoughLinesP(edges, rho, theta, threshold, np.array([]),
+                                             min_line_length, max_line_gap)
