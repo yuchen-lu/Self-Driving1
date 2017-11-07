@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov  2 23:53:45 2017
+
+@author: yuchen
+"""
+
 
 # coding: utf-8
 
@@ -8,6 +15,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import cv2
 import numpy as np
+
 #get_ipython().magic('matplotlib inline')
 
 
@@ -15,10 +23,10 @@ import numpy as np
 
 
 
-#image = mpimg.imread('test_images/solidWhiteRight.jpg')
+image2 = mpimg.imread('test_images/solidWhiteRight.jpg')
 
 #plt.imshow(image)
-image2 =cv2.imread('test_images/solidWhiteRight.jpg',-1)  # 1,0,-1: color,greyscale, unchanged
+#image2 =cv2.imread('test_images/solidWhiteRight.jpg',-1)  # 1,0,-1: color,greyscale, unchanged
 #image3 =cv2.IMREAD_GRAYSCALE('test_images/solidWhiteRight.jpg')
 
 print('This image is ', type(image2),'with dimensions:',image2.shape)
@@ -139,20 +147,27 @@ print(imglist)
 for eachimg in imglist:
     #cv2.startWindowThread()    
     #cv2.waitKey(0)
-    print(eachimg)
+#---------------highlight: how to debug!
+
+  
+    
     image=mpimg.imread('test_images/'+eachimg)
     grayed_img=grayscale(image)
+    plt.imshow(grayed_img)
     
-    blurred_img=gaussian_blur(grayed_img,3)
-    cannyed_img=canny(blurred_img,100,200)
-    left_bot = [0, 539]
-    right_bot = [900, 300]
-    apex = [400, 0]
-    #-------------------highlight, findpoly input
-    vertices = np.array([[left_bot, right_bot, apex]])
-    regioned_img=region_of_interest(blurred_img,vertices)
-    print(regioned_img)
-    plt.imshow(regioned_img)
+    Pdb().set_trace()
+
+    print(eachimg)
+#    blurred_img=gaussian_blur(grayed_img,3)
+#    cannyed_img=canny(blurred_img,100,200)
+#    left_bot = [0, 539]
+#    right_bot = [900, 300]
+#    apex = [400, 0]
+#    #-------------------highlight, findpoly input
+#    vertices = np.array([[left_bot, right_bot, apex]])
+#    regioned_img=region_of_interest(blurred_img,vertices)
+#    print(regioned_img)
+#    plt.imshow(regioned_img)
     
     
  #   greyedimg=grayscale()
