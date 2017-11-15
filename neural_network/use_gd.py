@@ -1,15 +1,16 @@
-# Mean Square Error: E=1/2m*sum(y-yhat)^2
-# used when a lot of data, simply sum leads to big update and diverge gd
+'''
+ Mean Square Error: E=1/2m*sum(y-yhat)^2
+ used when a lot of data, simply sum leads to big update and diverge gd
 
 
 
-#General algorithm:
-# 1. set weight step delta_wi =0 ; 
-# 2. find output yhat = y-hat = f(sum wixi), error gradi = (y-yhat)*f'(sum wixi)
-# 2cont: update weight step delta_wi = delta_wi + delta* xi
-# 3. update weights wi = wi + learnrate*delta_wi/m   //average to reduce large variations
-# 4. repeat for e epochs
-
+General algorithm:
+ 1. set weight step delta_wi =0 ; 
+ 2. find output yhat = y-hat = f(sum wixi), error gradi = (y-yhat)*f'(sum wixi)
+ 2cont: update weight step delta_wi = delta_wi + delta* xi
+ 3. update weights wi = wi + learnrate*delta_wi/m   //average to reduce large variations
+ 4. repeat for e epochs
+'''
 
 import numpy as np
 from data_prep import features, targets, features_test, targets_test
@@ -32,6 +33,7 @@ weights = np.random.normal(scale=1 / n_features**.5, size=n_features)
 
 # Neural Network hyperparameters
 epochs = 1000
+#  An epoch is one complete data set to be learned to a learning machine
 learnrate = .5
 
 for e in range(epochs):
@@ -54,7 +56,7 @@ for e in range(epochs):
     # Printing out the mean square error on the training set
     if e % (epochs / 10) == 0:
         out = sigmoid(np.dot(features, weights))
-        loss = np.mean((out - targets) ** 2)
+        loss = np.mean((out - targets) ** 2)   # ** 2 meaning ^2
         if last_loss and last_loss < loss:
             print("Train loss: ", loss, "  WARNING - Loss Increasing")
         else:
