@@ -48,13 +48,14 @@ output = sigmoid(output_layer_input)
 # bardward pass
 # calculate error
 
-error = (target- output)*output*(1-output) 
+error = (target- output)
 
 # calculate error gradient for output layer
 del_err_output = error * output *(1-output)
 
 # calcylate error dradient for hidden layer
-del_err_hidden = weights_hidden_output * hidden_layer_input * del_err_output
+f_prime_h = hidden_layer_output * (1-hidden_layer_output)
+del_err_hidden = weights_hidden_output * f_prime_h * del_err_output
 
 # calculate chage in weights for hidden layer to output layer
 
@@ -62,7 +63,7 @@ del_w_h_o = learnrate * del_err_output * hidden_layer_output
 
 # calculate error gradient for input layer to hidden layer
 
-del_w_i_h = learnrate * del_err_output * x
+del_w_i_h = learnrate * del_err_hidden * x
 
 
 
